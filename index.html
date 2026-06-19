@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eternal Gacha</title>
+    <title>Eternal Gacha - Ultimate Edition</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- React & ReactDOM -->
@@ -39,15 +39,16 @@
         const Sparkles = (p) => <Icon {...p}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></Icon>;
         const Cpu = (p) => <Icon {...p}><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></Icon>;
         const Moon = (p) => <Icon {...p}><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></Icon>;
+        const Bomb = (p) => <Icon {...p}><circle cx="11" cy="13" r="8"/><path d="M5 9 2 6"/><path d="m15 9 3-3"/><path d="M11 5V2"/><line x1="11" y1="2" x2="13" y2="4"/></Icon>;
 
         // --- レアリティ定義 ---
         const BASE_RARITIES = [
           { id: 'N', phase: 1, name: 'Normal', weight: 4000, colors: ['#9ca3af', '#f3f4f6'], bgClass: 'bg-gradient-to-br from-gray-600 to-gray-400', textClass: 'text-gray-300' },
-          { id: 'R', phase: 2, name: 'Rare', weight: 3000, colors: ['#3b82f6', '#93c5fd'], bgClass: 'bg-gradient-to-br from-blue-700 to-blue-400', textClass: 'text-blue-400 drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]' },
-          { id: 'SR', phase: 3, name: 'Super Rare', weight: 2000, colors: ['#a855f7', '#d8b4fe'], bgClass: 'bg-gradient-to-br from-purple-700 to-purple-400', textClass: 'text-purple-400 drop-shadow-[0_0_10px_rgba(192,132,252,0.6)]' },
-          { id: 'SSR', phase: 4, name: 'Double Super Rare', weight: 700, colors: ['#eab308', '#fef08a'], bgClass: 'bg-gradient-to-br from-yellow-600 to-yellow-300', textClass: 'text-yellow-300 drop-shadow-[0_0_15px_rgba(253,224,71,0.8)]' },
-          { id: 'HR', phase: 5, name: 'Hyper Rare', weight: 200, colors: ['#10b981', '#6ee7b7', '#059669'], bgClass: 'bg-gradient-to-br from-emerald-600 to-teal-400', textClass: 'text-emerald-300 drop-shadow-[0_0_20px_rgba(110,231,183,0.9)]' },
-          { id: 'UR', phase: 6, name: 'Ultra Rare', weight: 80, colors: ['#ef4444', '#fca5a5', '#ea580c'], bgClass: 'bg-gradient-to-br from-red-700 via-rose-600 to-orange-600', textClass: 'text-red-400 drop-shadow-[0_0_25px_rgba(248,113,113,1)]' },
+          { id: 'R', phase: 2, name: 'Rare', weight: 3000, colors: ['#3b82f6', '#93c5fd'], bgClass: 'bg-gradient-to-br from-blue-700 to-blue-400', textClass: 'text-blue-400' },
+          { id: 'SR', phase: 3, name: 'Super Rare', weight: 2000, colors: ['#a855f7', '#d8b4fe'], bgClass: 'bg-gradient-to-br from-purple-700 to-purple-400', textClass: 'text-purple-400' },
+          { id: 'SSR', phase: 4, name: 'Double Super Rare', weight: 700, colors: ['#eab308', '#fef08a'], bgClass: 'bg-gradient-to-br from-yellow-600 to-yellow-300', textClass: 'text-yellow-300' },
+          { id: 'HR', phase: 5, name: 'Hyper Rare', weight: 200, colors: ['#10b981', '#6ee7b7', '#059669'], bgClass: 'bg-gradient-to-br from-emerald-600 to-teal-400', textClass: 'text-emerald-300' },
+          { id: 'UR', phase: 6, name: 'Ultra Rare', weight: 80, colors: ['#ef4444', '#fca5a5', '#ea580c'], bgClass: 'bg-gradient-to-br from-red-700 via-rose-600 to-orange-600', textClass: 'text-red-400' },
           { id: 'Z', phase: 7, name: 'ZENITH', weight: 15, colors: ['#ff0000', '#00ff00', '#0000ff'], bgClass: 'bg-z-card', textClass: 'text-z-rare' },
         ];
         const ZZR_RARITY = { id: 'ZZR', phase: 8, name: 'Zeta Zenith Rare', weight: 5, colors: ['#ffffff', '#8888ff'], bgClass: 'bg-zzr-card', textClass: 'text-zzr-rare' };
@@ -60,7 +61,7 @@
               prefixes: ["真・", "封印されし", "古の", "聖なる", "暗黒の", "星屑の", "次元を裂く", "幻影の", "輝かしき", "呪われた"],
               bases: ["剣", "魔導書", "指輪", "鎧", "盾", "杖", "槍", "弓", "短剣", "王冠", "水晶", "魂", "ネックレス"],
               suffixes: ["・オメガ", "の残滓", "・レプリカ", "の極み", "・改", "（呪）", "の断片", "・オリジン"],
-              urNames: ["神滅の剣", "魔王の心臓", "星砕きの戦斧", "次元を超える指輪", "不老不死の霊薬", "世界樹の雫", "絶対零度の槍"],
+              urNames: ["神滅の剣", "魔王の心臓", "星砕きの戦斧", "次元を超える指輪", "不老不死 of 霊薬", "世界樹の雫", "絶対零度の槍"],
               zNames: ["真理の扉", "創世の光・ジェネシス", "終焉のノヴァ", "アカシックレコード", "絶対神の遺物", "宇宙の産声"],
               zzrNames: []
             }
@@ -86,6 +87,17 @@
               zNames: ["ビッグバン・コア", "神の玉座", "全知全能の書"],
               zzrNames: ["Ω・ジ・エンド", "絶対神・アルティメット", "宇宙創世の理(コズミック・ロゴス)"]
             }
+          },
+          {
+            id: 'secret', name: '終末のトリガー', bgClass: 'bg-[#0f0404]', titleGradient: 'from-red-600 via-orange-500 to-yellow-500', rarities: BASE_RARITIES, isSecret: true,
+            data: {
+              prefixes: ["滅殺の", "サプレッサー・", "デス・", "ドゥーム・", "ライオット・", "リベレーター・", "ヴェノム・", "ゴースト・", "ヘル・"],
+              bases: ["ハンドガン", "ショットガン", "アサルトライフル", "ランチャー", "キャノン", "マシンガン", "スナイパー", "ガトリング"],
+              suffixes: ["・コラプス", "・カタストロフィ", "・ブラスト", "・ブラッドエッジ", "・カスタムXS"],
+              urNames: ["終末の魔弾・トリニティ", "ヘカトンケイル・レールガン", "超新星爆縮ランチャー"],
+              zNames: ["ガグンラーズ・ゼロ", "滅世機関・デスゲート"],
+              zzrNames: []
+            }
           }
         ];
 
@@ -105,7 +117,7 @@
             if (name.includes("魔導書") || name.includes("レコード") || name.includes("書")) return Book;
             if (name.includes("盾") || name.includes("鎧") || name.includes("シールド") || name.includes("イージス") || name.includes("法衣")) return Shield;
             if (name.includes("杖") || name.includes("槍")) return Wand2;
-            if (name.includes("弓") || name.includes("ブラスター") || name.includes("カノン")) return Crosshair;
+            if (name.includes("弓") || name.includes("ブラスター") || name.includes("カノン") || name.includes("ガン") || name.includes("ライフル") || name.includes("ランチャー") || name.includes("ガトリング")) return Crosshair;
             if (name.includes("王冠") || name.includes("ティアラ")) return Crown;
             if (name.includes("指輪") || name.includes("扉") || name.includes("ギア") || name.includes("羅針盤")) return Hexagon;
             if (name.includes("魂") || name.includes("心臓") || name.includes("霊薬") || name.includes("聖杯") || name.includes("息吹")) return Ghost;
@@ -114,6 +126,7 @@
             if (name.includes("光") || name.includes("星") || name.includes("ゼロ") || name.includes("プラズマ") || name.includes("ネオン") || name.includes("銀河") || name.includes("天球儀")) return Zap;
             if (name.includes("月光") || name.includes("宇宙") || name.includes("神")) return Moon;
             if (name.includes("コア") || name.includes("ドライブ") || name.includes("メインフレーム") || name.includes("理")) return Cpu;
+            if (name.includes("トリガー") || name.includes("滅世") || name.includes("ボム")) return Bomb;
             return Star;
         }
 
@@ -130,6 +143,7 @@
                 this.shake = 0;
                 this.theme = theme;
                 this.warpSpeed = 1;
+                this.singularityPower = 0; // 特異点吸い込み用
                 this.initBg();
             }
             
@@ -145,7 +159,8 @@
 
             initBg() {
                 this.bgParticles = [];
-                for(let i=0; i<150; i++) {
+                const count = this.theme === 'secret' ? 180 : 150;
+                for(let i=0; i<count; i++) {
                     let vx, vy;
                     if (this.theme === 'scifi') {
                         const isVertical = Math.random() > 0.5;
@@ -154,6 +169,10 @@
                     } else if (this.theme === 'celestial') {
                         vx = (Math.random() - 0.5) * 1.5;
                         vy = (Math.random() - 0.5) * 1.5;
+                    } else if (this.theme === 'secret') {
+                        // 赤黒い火の粉が下から上へ昇る
+                        vx = (Math.random() - 0.5) * 0.8;
+                        vy = -Math.random() * 1.2 - 0.4;
                     } else {
                         vx = (Math.random() - 0.5) * 0.5;
                         vy = (Math.random() - 0.5) * 0.5;
@@ -164,7 +183,7 @@
                         vx, vy,
                         size: Math.random() * (this.theme === 'celestial' ? 3 : 2) + 0.5,
                         alpha: Math.random() * 0.5 + 0.1,
-                        color: this.theme === 'celestial' ? (Math.random()>0.8?'#fef08a':'#ffffff') : '#ffffff'
+                        color: this.theme === 'celestial' ? (Math.random()>0.8?'#fef08a':'#ffffff') : (this.theme === 'secret' ? `rgba(${200 + Math.random()*55}, ${Math.random()*80}, 0, ${Math.random()*0.4+0.1})` : '#ffffff')
                     });
                 }
             }
@@ -180,6 +199,7 @@
                 this.targetColors = colors;
                 this.shake = phaseNum * 10; 
                 this.warpSpeed = 1;
+                this.singularityPower = 0;
             }
 
             startExplosion(colors, isZ, isUR, isZZR) {
@@ -199,7 +219,7 @@
                         x: cx, y: cy, lastX: cx, lastY: cy,
                         vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
                         size: Math.random() * (isZZR ? 9 : (isZ ? 7 : 5)) + 1,
-                        color: isZZR ? (Math.random()>0.5?'#fff':'#aaa') : this.getRandomColor(), type: 'explode', life: 1, decay: Math.random() * 0.02 + 0.005,
+                        color: isZZR ? (Math.random()>0.5?'#fff':'#88f') : this.getRandomColor(), type: 'explode', life: 1, decay: Math.random() * 0.02 + 0.005,
                         shape: this.theme === 'scifi' ? (Math.random() > 0.7 ? 'rect' : 'line') : 'line'
                     });
                 }
@@ -211,6 +231,41 @@
                         x: cx, y: cy, lastX: cx, lastY: cy,
                         vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
                         size: 3, color: '#ffffff', type: 'shockwave', life: 1, decay: 0.03, shape: 'line'
+                    });
+                }
+            }
+
+            startShotgunExplosion() {
+                this.state = 'result';
+                this.particles = [];
+                this.shake = 130;
+                
+                const cx = this.canvas.width / 2;
+                const cy = this.canvas.height / 2;
+
+                // 散弾（極太の火花光線）
+                for (let i = 0; i < 400; i++) {
+                    const angle = (Math.random() - 0.5) * (Math.PI / 1.5) - Math.PI / 2; // 上方向・広角に噴射
+                    const speed = Math.random() * 50 + 15;
+                    this.particles.push({
+                        x: cx, y: cy + 100, lastX: cx, lastY: cy + 100,
+                        vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+                        size: Math.random() * 6 + 2,
+                        color: Math.random() > 0.4 ? `rgba(255, ${100 + Math.random()*155}, 0, 1)` : '#fff',
+                        type: 'explode', life: 1, decay: Math.random() * 0.04 + 0.01,
+                        shape: 'line'
+                    });
+                }
+
+                // 薬莢（真鍮色）が横に飛び散る
+                for (let i = 0; i < 30; i++) {
+                    const angle = Math.random() * Math.PI * 0.4 - Math.PI * 0.2; // 左右斜め下
+                    const speed = Math.random() * 15 + 5;
+                    this.particles.push({
+                        x: cx, y: cy + 50, lastX: cx, lastY: cy + 50,
+                        vx: (Math.random() > 0.5 ? 1 : -1) * Math.cos(angle) * speed,
+                        vy: -Math.random() * 8,
+                        size: 4, color: '#eab308', type: 'shell', life: 1.5, decay: 0.02
                     });
                 }
             }
@@ -241,10 +296,21 @@
                 this.bgParticles.forEach(p => {
                     let speedMult = 1;
                     if (this.state === 'charging') speedMult = 1 + (this.currentPhaseNum * 0.8);
-                    if (this.state === 'warp') speedMult = this.warpSpeed; // ZZR用ワープ
+                    if (this.state === 'warp') speedMult = this.warpSpeed; 
 
-                    if (this.state === 'warp') {
-                        // 中央から放射状に飛ぶ
+                    if (this.state === 'singularity') {
+                        // 特異点へ強烈に吸い込まれる
+                        const dx = cx - p.x;
+                        const dy = cy - p.y;
+                        const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+                        if (dist > 10) {
+                            p.x += (dx/dist) * this.singularityPower * 5;
+                            p.y += (dy/dist) * this.singularityPower * 5;
+                        } else {
+                            p.x = Math.random() * w;
+                            p.y = Math.random() * h;
+                        }
+                    } else if (this.state === 'warp') {
                         const dx = p.x - cx;
                         const dy = p.y - cy;
                         const dist = Math.sqrt(dx*dx + dy*dy) || 1;
@@ -269,8 +335,27 @@
                     }
                 });
 
+                if (this.state === 'singularity') {
+                    // 特異点（ブラックホールコア）
+                    const grad = this.ctx.createRadialGradient(cx, cy, 0, cx, cy, 100);
+                    grad.addColorStop(0, '#000000');
+                    grad.addColorStop(0.3, '#0f0426');
+                    grad.addColorStop(0.8, '#a855f7');
+                    grad.addColorStop(1, 'transparent');
+                    this.ctx.fillStyle = grad;
+                    this.ctx.beginPath();
+                    this.ctx.arc(cx, cy, 150, 0, Math.PI*2);
+                    this.ctx.fill();
+                    
+                    // 重力ひずみのリング
+                    this.ctx.strokeStyle = '#c084fc';
+                    this.ctx.lineWidth = 1;
+                    this.ctx.beginPath();
+                    this.ctx.arc(cx, cy, 60 + Math.sin(Date.now()/50)*10, 0, Math.PI*2);
+                    this.ctx.stroke();
+                }
+
                 if (this.state === 'crack') {
-                    // Z用 画面の亀裂描画
                     this.ctx.strokeStyle = '#ffffff';
                     this.ctx.lineWidth = 4;
                     this.ctx.beginPath();
@@ -287,7 +372,7 @@
                 }
 
                 if (this.state === 'charging') {
-                    const intensity = this.currentPhaseNum / 8; // Max phase 8
+                    const intensity = this.currentPhaseNum / 8;
 
                     const spawnRate = intensity * 6 + 1;
                     if (Math.random() * 2 < spawnRate) {
@@ -332,6 +417,14 @@
                             this.ctx.lineWidth = 3;
                             this.ctx.stroke();
                         }
+                    } else if (this.theme === 'secret') {
+                        // 炎のチャージサークル
+                        const r = 40 + intensity * 90;
+                        this.ctx.strokeStyle = '#ef4444';
+                        this.ctx.lineWidth = 4;
+                        this.ctx.beginPath();
+                        this.ctx.arc(cx, cy, r, 0, Math.PI*2);
+                        this.ctx.stroke();
                     } else {
                         const orbBaseRadius = 30 + intensity * 70;
                         const orbPulse = Math.sin(Date.now() / 80) * (intensity * 15);
@@ -366,6 +459,19 @@
                         if (p.type === 'explode') p.vy += 0.08; 
                         p.x += p.vx; p.y += p.vy;
                         p.life -= p.decay; p.size = Math.max(0, p.size - 0.05);
+                    } else if (p.type === 'shell') {
+                        // 物理シミュレーション薬莢
+                        p.vy += 0.4; // 重力
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.life -= p.decay;
+                        this.ctx.save();
+                        this.ctx.translate(p.x, p.y);
+                        this.ctx.rotate(p.life * 5);
+                        this.ctx.fillStyle = p.color;
+                        this.ctx.fillRect(-2, -5, 4, 10);
+                        this.ctx.restore();
+                        continue;
                     }
 
                     if (p.life > 0) {
@@ -392,7 +498,7 @@
         }
 
         // --- カードコンポーネント ---
-        const GachaCard = ({ item, isNew = false, size = 'large', index = 0 }) => {
+        const GachaCard = ({ item, isNew = false, size = 'large', index = 0, triggerReveal = false }) => {
             const IconComponent = getIconForName(item.itemName);
             const isLarge = size === 'large';
             const isSmall = size === 'small';
@@ -405,10 +511,13 @@
             const iconSize = isLarge ? 100 : (isSmall ? 40 : 28);
             const nameClasses = isLarge ? 'text-xl sm:text-2xl px-2' : (isSmall ? 'text-xs sm:text-sm px-1' : 'text-[10px] sm:text-xs px-1 leading-tight line-clamp-2');
 
+            // 10連ショットガンの時は時間差で撃ち込まれるアニメーションクラスを適用
+            const animClass = triggerReveal ? 'animate-reveal-card-shotgun' : 'animate-reveal-card';
+
             return (
                 <div 
-                    className={`relative ${isLarge ? 'p-1.5' : 'p-0.5'} rounded-2xl ${item.bgClass} shadow-2xl transition-transform hover:scale-105 animate-reveal-card`}
-                    style={{ animationDelay: `${index * 0.08}s` }}
+                    className={`relative ${isLarge ? 'p-1.5' : 'p-0.5'} rounded-2xl ${item.bgClass} shadow-2xl transition-transform hover:scale-105 ${animClass}`}
+                    style={{ animationDelay: triggerReveal ? `${index * 0.15}s` : `${index * 0.08}s` }}
                 >
                     <div className={`bg-[#0f1219] rounded-[14px] flex flex-col items-center justify-between ${containerClasses} relative overflow-hidden shadow-inner`}>
                         <div className={`absolute inset-0 opacity-30 ${item.bgClass}`} style={{ filter: 'blur(30px)' }}></div>
@@ -420,7 +529,6 @@
                                 NEW!
                             </div>
                         )}
-                        {/* 所持数バッジ */}
                         {isSmall && item.count > 1 && (
                             <div className="absolute top-1 right-1 bg-blue-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full z-20">
                                 x{item.count}
@@ -454,13 +562,15 @@
             const [gameState, setGameState] = useState('idle'); // idle, charging, reveal_anim, reveal, collection
             const [currentBanner, setCurrentBanner] = useState(BANNERS[0]);
             const [animPhase, setAnimPhase] = useState(''); 
-            const [animRarity, setAnimRarity] = useState(''); // UR, Z, ZZR
+            const [animRarity, setAnimRarity] = useState(''); 
             const [currentResults, setCurrentResults] = useState([]);
             const [currentPhase, setCurrentPhase] = useState(1);
             const [isPhaseUpFlashing, setIsPhaseUpFlashing] = useState(false);
             const [isExplosionFlashing, setIsExplosionFlashing] = useState(false);
             const [collection, setCollection] = useState([]);
             const [showRates, setShowRates] = useState(false);
+            const [isSecretUnlocked, setIsSecretUnlocked] = useState(false);
+            const [showUnlockOverlay, setShowUnlockOverlay] = useState(false);
             
             const canvasRef = useRef(null);
             const particleSystem = useRef(null);
@@ -582,39 +692,68 @@
                 setGameState('reveal_anim');
                 setAnimRarity(highest.id);
 
+                // --- 星界の神託 ZZR 究極演出 ---
                 if (highest.id === 'ZZR') {
-                    // ZZR演出
-                    particleSystem.current.state = 'warp';
                     setAnimPhase('glitch_white');
+                    particleSystem.current.shake = 10;
+                    await new Promise(resolve => setTimeout(resolve, 800));
+                    
+                    // 特異点（シンギュラリティ）への超吸引
+                    setAnimPhase('singularity');
+                    particleSystem.current.state = 'singularity';
+                    for (let i = 1; i <= 30; i++) {
+                        particleSystem.current.singularityPower = i * 0.1;
+                        particleSystem.current.shake = i * 0.5;
+                        await new Promise(r => setTimeout(r, 50));
+                    }
+                    
+                    // ビッグバン（画面真っ白）
+                    setAnimPhase('big_bang');
+                    particleSystem.current.state = 'warp';
+                    particleSystem.current.warpSpeed = 80;
+                    particleSystem.current.shake = 100;
                     await new Promise(resolve => setTimeout(resolve, 1000));
                     
-                    setAnimPhase('warp');
-                    let speed = 1;
-                    const warpInt = setInterval(() => { speed+=0.5; particleSystem.current.warpSpeed = speed; }, 100);
-                    await new Promise(resolve => setTimeout(resolve, 2500));
-                    clearInterval(warpInt);
-                    
+                    // 神の啓示テキスト
                     setAnimPhase('god_text');
-                    particleSystem.current.shake = 100;
-                    await new Promise(resolve => setTimeout(resolve, 2500));
+                    particleSystem.current.warpSpeed = 2;
+                    particleSystem.current.shake = 20;
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+
+                    // 解放フラグ判定
+                    if (!isSecretUnlocked) {
+                        setIsSecretUnlocked(true);
+                        setShowUnlockOverlay(true);
+                    }
                 } 
+                // --- 隠しガチャ 10連専用ショットガン演出 ---
+                else if (currentBanner.id === 'secret' && isTenRollRef.current) {
+                    setAnimRarity('shotgun');
+                    setAnimPhase('lock_load');
+                    particleSystem.current.shake = 15;
+                    await new Promise(resolve => setTimeout(resolve, 1200));
+
+                    setAnimPhase('fire');
+                    particleSystem.current.startShotgunExplosion();
+                    await new Promise(resolve => setTimeout(resolve, 1800));
+                }
+                // --- 通常のZ演出 ---
                 else if (highest.id === 'Z') {
-                    // Z演出
-                    particleSystem.current.state = 'dark';
                     setAnimPhase('darkout');
+                    particleSystem.current.state = 'dark';
                     await new Promise(resolve => setTimeout(resolve, 1500));
 
                     setAnimPhase('crack');
                     particleSystem.current.state = 'crack';
-                    particleSystem.current.shake = 20;
+                    particleSystem.current.shake = 30;
                     await new Promise(resolve => setTimeout(resolve, 1000));
 
                     setAnimPhase('zenith_text');
-                    particleSystem.current.shake = 50;
+                    particleSystem.current.shake = 60;
                     await new Promise(resolve => setTimeout(resolve, 2000));
                 }
+                // --- 通常のUR演出 ---
                 else if (highest.id === 'UR') {
-                    // UR演出 (バナー別)
                     particleSystem.current.state = 'ur_reveal';
                     if (currentBanner.id === 'scifi') {
                         setAnimPhase('warning');
@@ -626,6 +765,13 @@
                         await new Promise(resolve => setTimeout(resolve, 2000));
                         clearInterval(flashInt);
                         setIsExplosionFlashing(false);
+                    } else if (currentBanner.id === 'secret') {
+                        setAnimPhase('chamber_light');
+                        particleSystem.current.shake = 15;
+                        await new Promise(resolve => setTimeout(resolve, 1200));
+                        setAnimPhase('bullet_focus');
+                        particleSystem.current.shake = 40;
+                        await new Promise(resolve => setTimeout(resolve, 2000));
                     } else {
                         setAnimPhase('focus');
                         particleSystem.current.shake = 10;
@@ -639,11 +785,11 @@
                 setIsExplosionFlashing(true);
                 await new Promise(resolve => setTimeout(resolve, 150));
                 
-                // コレクション追加（重複排除）
+                // コレクション処理（重複加算）
                 setCollection(prev => {
                     let newColl = [...prev];
                     results.forEach(res => {
-                        const existing = newColl.find(item => item.itemName === res.itemName);
+                        const existing = newColl.find(item => item.itemName === res.itemName && item.bannerId === res.bannerId);
                         if (existing) {
                             existing.count = (existing.count || 1) + 1;
                             res.isDuplicate = true;
@@ -657,7 +803,10 @@
                 });
 
                 setCurrentResults(results);
-                particleSystem.current.startExplosion(highest.colors, highest.id === 'Z', highest.id === 'UR', highest.id === 'ZZR');
+                // ショットガンの時はすでに結果用粒子が撃ち込まれているので追加爆発はさせない
+                if (currentBanner.id !== 'secret' || !isTenRollRef.current) {
+                    particleSystem.current.startExplosion(highest.colors, highest.id === 'Z', highest.id === 'UR', highest.id === 'ZZR');
+                }
                 setGameState('reveal');
                 setIsExplosionFlashing(false);
             };
@@ -672,9 +821,11 @@
                 }
             };
 
-            // コレクションをレアリティごとにグループ化（現在のバナーのレアリティ順）
             const allRarities = [...BASE_RARITIES, ZZR_RARITY].reverse();
             const groupedCollection = allRarities.map(rarity => ({ rarity, items: collection.filter(item => item.id === rarity.id) })); 
+
+            // 表示するガチャバナーのフィルタ（隠しガチャ制限）
+            const visibleBanners = BANNERS.filter(b => !b.isSecret || isSecretUnlocked);
 
             return (
                 <div 
@@ -686,38 +837,54 @@
                     onClick={gameState === 'reveal' ? resetToIdle : undefined}
                 >
                     <style>{`
-                        /* Z用文字バグ修正と高クオリティ化 */
+                        /* Z用高クオリティレインボーテキスト */
                         .text-z-rare {
-                            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+                            background: linear-gradient(90deg, #ff0055, #ffdd00, #00ff66, #00ffff, #0022ff, #9900ff, #ff0055);
                             background-size: 200% auto;
                             color: #fff;
                             -webkit-text-fill-color: transparent;
                             -webkit-background-clip: text;
                             background-clip: text;
-                            animation: text-rainbow 2s linear infinite;
+                            animation: text-rainbow 1.8s linear infinite;
+                            font-weight: 900;
+                            filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));
                         }
                         .bg-z-card {
-                            background: #000;
-                            box-shadow: 0 0 20px #ff0000, 0 0 40px #00ff00, 0 0 60px #0000ff;
-                            animation: rainbow-shadow 2s infinite linear;
+                            background: #030308;
+                            border: 2px solid #ff0077;
+                            box-shadow: 0 0 30px #ff003c, 0 0 60px #00ff55, 0 0 90px #0055ff;
+                            animation: rainbow-shadow 3s infinite linear;
                         }
                         @keyframes text-rainbow { to { background-position: 200% center; } }
-                        @keyframes rainbow-shadow { 0%,100% { box-shadow: 0 0 30px #ff0000, 0 0 60px #ff7f00; } 33% { box-shadow: 0 0 30px #00ff00, 0 0 60px #0000ff; } 66% { box-shadow: 0 0 30px #4b0082, 0 0 60px #9400d3; } }
+                        @keyframes rainbow-shadow { 0%,100% { box-shadow: 0 0 30px #ff0055, 0 0 60px #ffdd00; } 33% { box-shadow: 0 0 30px #00ff66, 0 0 60px #00ffff; } 66% { box-shadow: 0 0 30px #9900ff, 0 0 60px #ff0055; } }
 
-                        /* ZZR用 */
+                        /* ZZR究極光輝カード */
                         .text-zzr-rare {
                             color: white;
-                            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 50px #00ffff, 0 0 80px #00ffff;
+                            text-shadow: 0 0 10px #fff, 0 0 25px #00ffff, 0 0 50px #8888ff, 0 0 100px #00ffff;
+                            animation: pulse-zzr 1.5s infinite ease-in-out alternate;
                         }
                         .bg-zzr-card {
-                            background: radial-gradient(circle, #222, #000);
-                            border: 2px solid white;
-                            box-shadow: 0 0 40px #fff, inset 0 0 20px #fff;
+                            background: radial-gradient(circle, #252840, #000);
+                            border: 2px solid #ffffff;
+                            box-shadow: 0 0 50px #ffffff, inset 0 0 30px #00ffff;
+                            animation: pulse-shadow-zzr 2s infinite alternate;
                         }
+                        @keyframes pulse-zzr { 0% { opacity: 0.8; } 100% { opacity: 1; text-shadow: 0 0 15px #fff, 0 0 40px #00ffff, 0 0 80px #8888ff, 0 0 150px #00ffff; } }
+                        @keyframes pulse-shadow-zzr { 0% { box-shadow: 0 0 30px #fff, inset 0 0 20px #00ffff; } 100% { box-shadow: 0 0 60px #8888ff, inset 0 0 40px #fff; } }
 
                         .card-container { perspective: 1200px; }
+                        
                         @keyframes reveal-card { 0% { opacity: 0; transform: scale(0.5) translateY(50px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
                         .animate-reveal-card { opacity: 0; animation: reveal-card 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
+                        /* ショットガン専用：撃ち込まれる叩きつけアニメーション */
+                        @keyframes reveal-card-shotgun { 
+                            0% { opacity: 0; transform: scale(3) translateZ(400px) rotate(15deg); filter: brightness(5); } 
+                            40% { opacity: 1; transform: scale(0.95) translateZ(0) rotate(-5deg); filter: brightness(2); }
+                            100% { opacity: 1; transform: scale(1) translateZ(0) rotate(0deg); filter: brightness(1); } 
+                        }
+                        .animate-reveal-card-shotgun { opacity: 0; animation: reveal-card-shotgun 0.35s cubic-bezier(0.11, 0, 0, 1) forwards; }
 
                         ::-webkit-scrollbar { width: 8px; }
                         ::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 4px; }
@@ -726,10 +893,11 @@
                         
                         .charge-btn:active { transform: scale(0.95); box-shadow: 0 0 20px rgba(255,255,255,0.5); }
 
-                        /* アニメーション */
+                        /* 各種カットイン演出アニメーション */
                         @keyframes expand-width { 0% { width: 2px; opacity: 0; } 50% { width: 60px; opacity: 1; box-shadow: 0 0 60px #fef08a; } 100% { width: 100vw; opacity: 0; } }
                         .glow-line { box-shadow: 0 0 20px #fef08a, 0 0 40px #fef08a; }
                         @keyframes scale-up-fade { 0% { transform: scale(0.6); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+                        @keyframes glitch-shake { 0% { transform: translate(0); } 20% { transform: translate(-8px, 5px); } 40% { transform: translate(8px, -5px); } 60% { transform: translate(-5px, -5px); } 80% { transform: translate(5px, 5px); } 100% { transform: translate(0); } }
                         
                         .glitch-text { position: relative; }
                         .glitch-text::before, .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; }
@@ -738,9 +906,15 @@
                         @keyframes glitch-anim { 0% { clip: rect(10px, 9999px, 80px, 0); } 20% { clip: rect(80px, 9999px, 120px, 0); } 40% { clip: rect(10px, 9999px, 40px, 0); } 60% { clip: rect(60px, 9999px, 90px, 0); } 80% { clip: rect(100px, 9999px, 150px, 0); } 100% { clip: rect(20px, 9999px, 50px, 0); } }
                         @keyframes glitch-anim-2 { 0% { clip: rect(60px, 9999px, 100px, 0); } 20% { clip: rect(20px, 9999px, 60px, 0); } 40% { clip: rect(120px, 9999px, 150px, 0); } 60% { clip: rect(40px, 9999px, 80px, 0); } 80% { clip: rect(90px, 9999px, 120px, 0); } 100% { clip: rect(10px, 9999px, 30px, 0); } }
 
-                        /* ZZR Glitch */
-                        .glitch-white::before { text-shadow: -3px 0 #0ff; animation: glitch-anim-2 0.5s infinite linear alternate-reverse; }
-                        .glitch-white::after { text-shadow: 3px 0 #f0f; animation: glitch-anim 0.5s infinite linear alternate-reverse; }
+                        .glitch-white::before { text-shadow: -4px 0 #00ffff; animation: glitch-anim-2 0.3s infinite linear alternate-reverse; }
+                        .glitch-white::after { text-shadow: 4px 0 #ff0055; animation: glitch-anim 0.3s infinite linear alternate-reverse; }
+
+                        /* ショットガン演出用 */
+                        @keyframes slide-in-bar { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+                        @keyframes gun-flash { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; filter: blur(5px); } }
+                        .muzzle-flash {
+                            background: radial-gradient(circle, #ffffff, #ffdd00 30%, #ff5500 60%, transparent);
+                        }
                     `}</style>
 
                     <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none" />
@@ -751,11 +925,13 @@
                     {(gameState === 'idle' || gameState === 'collection') && !showRates && (
                         <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-40 flex flex-col gap-2">
                             <div className="text-xs text-gray-400 font-bold mb-1 pl-1">SELECT PROTOCOL</div>
-                            <div className="flex gap-2 sm:gap-4 bg-black/40 p-1.5 sm:p-2 rounded-2xl backdrop-blur-md border border-gray-700 shadow-xl flex-wrap max-w-[80vw]">
-                                {BANNERS.map(banner => (
+                            <div className="flex gap-2 sm:gap-4 bg-black/50 p-1.5 sm:p-2 rounded-2xl backdrop-blur-md border border-gray-700 shadow-xl flex-wrap max-w-[85vw]">
+                                {visibleBanners.map(banner => (
                                     <button key={banner.id} onClick={(e) => { e.stopPropagation(); setCurrentBanner(banner); setGameState('idle'); }}
                                         className={`px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-black transition-all duration-300 text-xs sm:text-base whitespace-nowrap ${
-                                            currentBanner.id === banner.id ? 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.5)] scale-105' : 'text-gray-400 hover:text-white hover:bg-white/10'
+                                            currentBanner.id === banner.id 
+                                            ? (banner.id === 'secret' ? 'bg-red-600 text-white shadow-[0_0_20px_rgba(239,68,68,0.7)] scale-105' : 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.5)] scale-105')
+                                            : 'text-gray-400 hover:text-white hover:bg-white/10'
                                         }`}
                                     >
                                         {banner.name}
@@ -773,13 +949,13 @@
                             </h1>
                             <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 mb-12">
                                 <button onMouseDown={startCharge(false)} onTouchStart={startCharge(false)}
-                                    className={`charge-btn px-10 sm:px-14 py-5 sm:py-6 text-xl sm:text-2xl font-bold rounded-2xl bg-gradient-to-br border-2 text-white shadow-lg transition-all duration-200 ${currentBanner.id === 'fantasy' ? 'from-gray-700 to-gray-900 border-gray-500' : (currentBanner.id === 'scifi' ? 'from-slate-800 to-cyan-950 border-cyan-800' : 'from-indigo-950 to-purple-900 border-purple-500')}`}
+                                    className={`charge-btn px-10 sm:px-14 py-5 sm:py-6 text-xl sm:text-2xl font-bold rounded-2xl bg-gradient-to-br border-2 text-white shadow-lg transition-all duration-200 ${currentBanner.id === 'fantasy' ? 'from-gray-700 to-gray-900 border-gray-500' : (currentBanner.id === 'scifi' ? 'from-slate-800 to-cyan-950 border-cyan-800' : (currentBanner.id === 'secret' ? 'from-red-950 to-neutral-900 border-red-700' : 'from-indigo-950 to-purple-900 border-purple-500'))}`}
                                 >
                                     <div className="text-sm text-gray-300 mb-1 font-mono">1 ROLL</div>
                                     長押しチャージ
                                 </button>
                                 <button onMouseDown={startCharge(true)} onTouchStart={startCharge(true)}
-                                    className={`charge-btn px-12 sm:px-16 py-5 sm:py-6 text-2xl sm:text-3xl font-black rounded-2xl bg-gradient-to-br border-2 text-white transition-all duration-200 animate-pulse ${currentBanner.id === 'fantasy' ? 'from-indigo-600 via-purple-600 to-pink-600 border-pink-400 shadow-[0_0_30px_rgba(236,72,153,0.5)]' : (currentBanner.id === 'scifi' ? 'from-cyan-600 via-blue-600 to-indigo-700 border-cyan-300 shadow-[0_0_30px_rgba(6,182,212,0.5)]' : 'from-purple-600 via-fuchsia-600 to-pink-500 border-fuchsia-300 shadow-[0_0_30px_rgba(217,70,239,0.5)]')}`}
+                                    className={`charge-btn px-12 sm:px-16 py-5 sm:py-6 text-2xl sm:text-3xl font-black rounded-2xl bg-gradient-to-br border-2 text-white transition-all duration-200 animate-pulse ${currentBanner.id === 'fantasy' ? 'from-indigo-600 via-purple-600 to-pink-600 border-pink-400 shadow-[0_0_30px_rgba(236,72,153,0.5)]' : (currentBanner.id === 'scifi' ? 'from-cyan-600 via-blue-600 to-indigo-700 border-cyan-300 shadow-[0_0_30px_rgba(6,182,212,0.5)]' : (currentBanner.id === 'secret' ? 'from-red-600 via-orange-600 to-amber-700 border-red-400 shadow-[0_0_30px_rgba(239,68,68,0.5)]' : 'from-purple-600 via-fuchsia-600 to-pink-500 border-fuchsia-300 shadow-[0_0_30px_rgba(217,70,239,0.5)]'))}`}
                                 >
                                     <div className="text-sm text-white/80 mb-1 font-bold font-mono">10x MULTI ROLL</div>
                                     10連長押しチャージ
@@ -839,42 +1015,46 @@
                         </div>
                     )}
 
-                    {/* --- スタイリッシュ確定演出 UI --- */}
+                    {/* --- 特殊演出・カットインシステム --- */}
                     {gameState === 'reveal_anim' && (
                         <div className="absolute inset-0 z-40 flex flex-col items-center justify-center overflow-hidden pointer-events-none">
                             
-                            {/* ZZR 演出 */}
+                            {/* === [究極] ZZR 演出 === */}
                             {animRarity === 'ZZR' && (
                                 <>
                                     {animPhase === 'glitch_white' && (
-                                        <div className="absolute inset-0 bg-white z-10 flex items-center justify-center">
-                                            <h1 className="text-6xl md:text-9xl font-black text-black glitch-text glitch-white" data-text="ERROR">ERROR</h1>
+                                        <div className="absolute inset-0 bg-white z-10 flex items-center justify-center animate-[glitch-shake_0.1s_infinite]">
+                                            <h1 className="text-7xl md:text-9xl font-black text-black glitch-text glitch-white" data-text="SYSTEM CRITICAL">SYSTEM CRITICAL</h1>
                                         </div>
                                     )}
-                                    {animPhase === 'warp' && (
-                                        <div className="absolute inset-0 bg-black z-0" />
+                                    {animPhase === 'singularity' && (
+                                        <div className="absolute inset-0 bg-black z-0 flex items-center justify-center" />
+                                    )}
+                                    {animPhase === 'big_bang' && (
+                                        <div className="absolute inset-0 bg-white z-50 flex items-center justify-center" />
                                     )}
                                     {animPhase === 'god_text' && (
                                         <>
-                                            <div className="absolute inset-0 bg-black/50 z-0" />
-                                            <div className="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 text-6xl md:text-[150px] font-black tracking-[0.2em] z-20"
-                                                 style={{ textShadow: '0 0 50px #fff', animation: 'scale-up-fade 1s ease-out forwards' }}>
-                                                OMNIPOTENT
+                                            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-950 via-black to-fuchsia-950 opacity-90 z-0" />
+                                            <div className="flex flex-col items-center z-20">
+                                                <div className="text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500 text-6xl md:text-[140px] font-black tracking-[0.3em] font-sans text-center leading-none"
+                                                     style={{ filter: 'drop-shadow(0 0 45px rgba(255,255,255,0.7))', animation: 'scale-up-fade 0.8s cubic-bezier(0.1, 0.9, 0.2, 1) forwards' }}>
+                                                    ZETA DECREE
+                                                </div>
+                                                <div className="text-cyan-400 tracking-[0.6em] text-xs md:text-sm mt-4 font-mono animate-pulse opacity-70">
+                                                    CREATION OVERRIDE SUCCESSFUL
+                                                </div>
                                             </div>
                                         </>
                                     )}
                                 </>
                             )}
 
-                            {/* Z 演出 */}
+                            {/* === [確定] Z 演出 === */}
                             {animRarity === 'Z' && (
                                 <>
-                                    {animPhase === 'darkout' && (
-                                        <div className="absolute inset-0 bg-black z-10" />
-                                    )}
-                                    {animPhase === 'crack' && (
-                                        <div className="absolute inset-0 bg-black z-10" /> // Canvasで線描画
-                                    )}
+                                    {animPhase === 'darkout' && ( <div className="absolute inset-0 bg-black z-10" /> )}
+                                    {animPhase === 'crack' && ( <div className="absolute inset-0 bg-black z-10" /> )}
                                     {animPhase === 'zenith_text' && (
                                         <>
                                             <div className="absolute inset-0 bg-rainbow animate-rainbow-bg opacity-30 z-0" />
@@ -887,7 +1067,7 @@
                                 </>
                             )}
 
-                            {/* UR 演出 */}
+                            {/* === [確定] UR 演出 === */}
                             {animRarity === 'UR' && (
                                 <>
                                     {currentBanner.id === 'fantasy' && (
@@ -929,17 +1109,47 @@
                                             )}
                                         </>
                                     )}
-                                    {currentBanner.id === 'celestial' && (
+                                    {currentBanner.id === 'secret' && (
                                         <>
-                                            {animPhase === 'focus' && <div className="absolute inset-0 bg-white animate-pulse" />}
-                                            {animPhase === 'awaken' && (
-                                                <div className="absolute inset-0 flex items-center justify-center bg-indigo-900/50 backdrop-blur-sm">
-                                                    <h1 className="text-5xl md:text-8xl font-black text-white tracking-[0.5em] z-10" style={{ textShadow: '0 0 40px #fff', animation: 'scale-up-fade 1s ease-out forwards' }}>
-                                                        DIVINE
+                                            {animPhase === 'chamber_light' && (
+                                                <div className="absolute inset-0 bg-black/90 flex items-center justify-center">
+                                                    <div className="w-1 h-32 bg-red-600 animate-[slide-in-bar_0.8s_ease-out_forwards]" />
+                                                </div>
+                                            )}
+                                            {animPhase === 'bullet_focus' && (
+                                                <div className="absolute inset-0 bg-[#120303]/90 flex items-center justify-center">
+                                                    <h1 className="text-5xl md:text-8xl font-black text-red-500 tracking-[0.3em] font-mono"
+                                                        style={{ filter: 'drop-shadow(0 0 30px red)', animation: 'scale-up-fade 0.5s ease-out forwards' }}>
+                                                        LETHAL LOAD
                                                     </h1>
                                                 </div>
                                             )}
                                         </>
+                                    )}
+                                </>
+                            )}
+
+                            {/* === [隠しガチャ 10連専用] ショットガン銃撃演出 === */}
+                            {animRarity === 'shotgun' && (
+                                <>
+                                    {animPhase === 'lock_load' && (
+                                        <div className="absolute inset-0 bg-black z-10 flex flex-col items-center justify-center">
+                                            <div className="text-white font-mono tracking-[0.5em] text-lg sm:text-2xl animate-pulse text-red-500">
+                                                LOCK & LOAD
+                                            </div>
+                                            <div className="w-64 h-1.5 bg-neutral-900 border border-neutral-700 mt-4 overflow-hidden rounded-full">
+                                                <div className="h-full bg-red-600 animate-[slide-in-bar_1.1s_linear_forwards]" />
+                                            </div>
+                                        </div>
+                                    )}
+                                    {animPhase === 'fire' && (
+                                        <div className="absolute inset-0 bg-black/90 z-10 flex items-center justify-center">
+                                            {/* マズルフラッシュの大爆発 */}
+                                            <div className="absolute w-[200px] h-[200px] md:w-[400px] md:h-[400px] rounded-full muzzle-flash animate-[gun-flash_0.6s_ease-out_forwards] z-20" />
+                                            <div className="absolute text-white font-black italic text-6xl md:text-9xl tracking-tighter drop-shadow-[0_0_35px_rgba(239,68,68,1)] z-30">
+                                                FIRE !!
+                                            </div>
+                                        </div>
                                     )}
                                 </>
                             )}
@@ -950,10 +1160,21 @@
                     {gameState === 'reveal' && currentResults.length > 0 && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center z-20 card-container">
                             {currentResults.length === 1 ? (
-                                <div className="mb-8"><GachaCard item={currentResults[0]} isNew={!currentResults[0].isDuplicate} size="large" /></div>
+                                <div className="mb-8">
+                                    <GachaCard item={currentResults[0]} isNew={!currentResults[0].isDuplicate} size="large" />
+                                </div>
                             ) : (
                                 <div className="grid grid-cols-5 gap-2 sm:gap-4 md:gap-6 mb-8 px-4 max-w-6xl">
-                                    {currentResults.map((item, idx) => (<GachaCard key={item.uid} item={item} isNew={!item.isDuplicate} size="tiny" index={idx} />))}
+                                    {currentResults.map((item, idx) => (
+                                        <GachaCard 
+                                            key={item.uid} 
+                                            item={item} 
+                                            isNew={!item.isDuplicate} 
+                                            size="tiny" 
+                                            index={idx} 
+                                            triggerReveal={currentBanner.id === 'secret'} // ショットガンは独自の叩きつけアニメーション
+                                        />
+                                    ))}
                                 </div>
                             )}
                             <div className="text-gray-300 text-sm sm:text-lg animate-pulse font-mono bg-black/60 px-8 py-3 rounded-full backdrop-blur-md pointer-events-none mt-4 border border-gray-700">
@@ -1020,6 +1241,28 @@
                                         })}
                                     </div>
                                 )}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* --- ZZR当選・隠しガチャ解放モーダル --- */}
+                    {showUnlockOverlay && (
+                        <div className="absolute inset-0 bg-black/95 z-50 flex flex-col items-center justify-center p-4">
+                            <div className="absolute w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(239,68,68,0.15),transparent)] animate-pulse" />
+                            <div className="z-10 flex flex-col items-center max-w-lg text-center animate-[scale-up-fade_1s_cubic-bezier(0.1,1,0.1,1)_forwards]">
+                                <Bomb size={120} className="text-red-500 mb-8 animate-bounce" />
+                                <h1 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 tracking-wider mb-4 font-sans">
+                                    TRIGGER UNLOCKED
+                                </h1>
+                                <p className="text-white text-lg font-bold mb-8 leading-relaxed">
+                                    ZZRの獲得を検知。世界の境界が破られました。<br/>
+                                    隠しプロトコル「終末のトリガー」が恒久的に解放されます。
+                                </p>
+                                <button onClick={() => setShowUnlockOverlay(false)}
+                                    className="px-12 py-4 bg-red-600 text-white text-xl font-black rounded-full shadow-[0_0_30px_rgba(239,68,68,0.5)] hover:shadow-[0_0_50px_rgba(239,68,68,1)] hover:scale-105 transition-all duration-300"
+                                >
+                                    兵器庫へアクセスする
+                                </button>
                             </div>
                         </div>
                     )}
